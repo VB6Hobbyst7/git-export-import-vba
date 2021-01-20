@@ -1,14 +1,33 @@
 Attribute VB_Name = "gitExport"
-Sub GitSave(gitPath, ignoreFrx As Boolean, modulesArray As Variant)
+Sub GitSave(gitPath, ignoreFrx As Boolean, wbExport As Boolean, Optional modulesArray As Variant = "")
     'In order for this code to work properly you must follow these steps:
     'Tools -> References -> Add Microsoft Visual Basic for Applications Extensibility 5.3
     'Excel Ribbon -> Developer -> Macro Security -> Trust access to the VBA project object model
-           
-    tempFolder = CreateTempFolder(gitPath)
+                 
+    If IsArray(modulesArray) = True Then
+        
+        tempFolder = CreateTempFolder(gitPath)
+        
+        ExportToTemp tempFolder, modulesArray
+        
+        CopyFiles tempFolder, gitPath, ignoreFrx, True
     
-    ExportToTemp tempFolder, modulesArray
+    End If
     
-    CopyFiles tempFolder, gitPath, ignoreFrx, True
+    If wbExport = True Then
+    
+        If MsgBox("Do you wish to save your Workbook before exporting?", vbYesNo) = vbYes Then
+        
+            ThisWorkbook.Save
+        
+        End If
+    
+        Dim fso As Object
+        Set fso = CreateObject("Scripting.FileSystemObject")
+        
+        Call fso.copyfile(ThisWorkbook.Path & "\" & ThisWorkbook.Name, gitPath, True)
+    
+    End If
     
     MsgBox "All files have been exported."
     
@@ -63,6 +82,8 @@ End Function
 
 Sub ExportToTemp(tempFolder, modulesArray As Variant) 'modulesArray must be an Array.
                 
+    If IsEmpty(modulesArray) Then Exit Sub
+    
     Dim wkb As Workbook: Set wkb = Excel.Workbooks(ThisWorkbook.Name)
     
     Dim unitsCount As Long

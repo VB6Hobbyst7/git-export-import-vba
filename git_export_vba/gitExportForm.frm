@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} gitExportForm 
    Caption         =   "Git Export"
-   ClientHeight    =   7665
+   ClientHeight    =   7980
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   4680
@@ -62,10 +62,15 @@ End Sub
 
 Private Sub exportFiles_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
 
-    Dim modulesArray()
+    If MsgBox("Do you wish to proceed?", vbYesNo) = vbNo Then Exit Sub
+
     Dim ignoreFrx As Boolean
+    Dim wbExport As Boolean
+    ignoreFrx = False
+    wbExport = False
     arrayBound = 0
     noneSelected = True
+   
     
     If gitFolderLabel.Caption = "Select the Git path using the folder icon." Then
     
@@ -78,18 +83,24 @@ Private Sub exportFiles_MouseUp(ByVal Button As Integer, ByVal Shift As Integer,
     For i = 0 To moduleList.ListCount - 1
     
         If moduleList.Selected(i) = True Then
-            
-            noneSelected = False
+                
+            Dim modulesArray()
         
             ReDim Preserve modulesArray(0 To arrayBound)
             
             modulesArray(arrayBound) = moduleList.List(i)
-            
+               
             arrayBound = arrayBound + 1
-        
+                
+            noneSelected = False
+            
+            sendArray = True
+                  
         End If
     
     Next i
+    
+    If wbExportCheck.Value = True Then noneSelected = False
     
     If noneSelected = True Then
     
@@ -99,16 +110,20 @@ Private Sub exportFiles_MouseUp(ByVal Button As Integer, ByVal Shift As Integer,
     
     End If
     
-    If ignoreFrxCheck.Value = True Then
+    If ignoreFrxCheck.Value = True Then ignoreFrx = True
+           
     
-        ignoreFrx = True
+    If wbExportCheck.Value = True Then wbExport = True
+    
+        
+    If sendArray = True Then
+    
+        GitSave gitFolderLabel.Caption, ignoreFrx, wbExport, modulesArray
     
     Else
     
-        ignoreFrx = False
+        GitSave gitFolderLabel.Caption, ignoreFrx, wbExport
     
     End If
     
-    GitSave gitFolderLabel.Caption, ignoreFrx, modulesArray
-
 End Sub
