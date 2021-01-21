@@ -1,2 +1,2 @@
-# git_export_vba
+# git-export-vba
 Simple userform for exporting VBA code to a specific folder (e.g. local repository). Useful for source control
