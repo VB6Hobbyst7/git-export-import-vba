@@ -27,7 +27,7 @@ I was looking for a tool that could do the job of easily exporting and importing
 * References;
 * Find Microsoft Visual Basic for Applications Extensibility 5.3 and add it.
 
-![](images/tree.jpg)
+![](images/extensibility.jpg)
 
 3 - Finally, follow the steps below:
 
