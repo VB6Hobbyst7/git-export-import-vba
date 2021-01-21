@@ -20,7 +20,7 @@ I was looking for a tool that could do the job of easily exporting and importing
 * Click on Macro Security;
 * Enable Trust access to the VBA project object model checkbox;
 
-![](images/objectModel.jpg)
+![](images/object.jpg)
 
 * Open the VBA editor;
 * Go to tools;
