@@ -19,10 +19,15 @@ I was looking for a tool that could do the job of easily exporting and importing
 * Go to developer tab (enable it first, if not already);
 * Click on Macro Security;
 * Enable Trust access to the VBA project object model checkbox;
+
+![](images/objectModel.jpg)
+
 * Open the VBA editor;
 * Go to tools;
 * References;
 * Find Microsoft Visual Basic for Applications Extensibility 5.3 and add it.
+
+![](images/tree.jpg)
 
 3 - Finally, follow the steps below:
 
