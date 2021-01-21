@@ -30,7 +30,7 @@ I was looking for a tool that could do the job of easily exporting and importing
 * Import files;
 * Go to the folder you extracted;
 * Import [gitExportImport.frm](git-export-import-vba/gitExportImport.frm);
-* Follow the steps above again and import [gitExportImportShared.bas](git-export-import-vba/gitExportImportShared.bas)
+* Follow step 3 again and import [gitExportImportShared.bas](git-export-import-vba/gitExportImportShared.bas)
 
 If everything worked well, inside <i>Forms</i> you should have <i>gitExportImport</i> and inside <i>modules</i>, <i>gitExportImportShared</i>. 
 
