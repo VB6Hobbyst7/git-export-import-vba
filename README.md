@@ -37,7 +37,7 @@ I was looking for a tool that could do the job of easily exporting and importing
 * Import [gitExportImport.frm](git-export-import-vba/gitExportImport.frm);
 * Follow step 3 again and import [gitExportImportShared.bas](git-export-import-vba/gitExportImportShared.bas)
 
-If everything worked well, inside <i>Forms</i> you should have <i>gitExportImport</i> and inside <i>modules</i>, <i>gitExportImportShared</i>.
+If everything worked well, inside <i>Forms</i> you should have <i>gitExportImport</i> and inside <i>Modules</i>, <i>gitExportImportShared</i>.
 
 ![](images/tree.jpg)
 
