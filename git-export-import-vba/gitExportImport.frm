@@ -19,6 +19,7 @@ Private Sub updateModuleList(listName As String, gitFolder)
     
         Dim fso As Object
         Set fso = CreateObject("Scripting.FileSystemObject")
+        On Error GoTo escape
         Set Folder = fso.GetFolder(gitFolder)
         
         For Each file In Folder.Files
@@ -36,7 +37,8 @@ Private Sub updateModuleList(listName As String, gitFolder)
             End If
         
         Next file
-    
+escape:
+
 End Sub
 
 Private Sub navExport_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
@@ -187,6 +189,7 @@ Private Sub gitFolderImageImport_MouseUp(ByVal Button As Integer, ByVal Shift As
         updateModuleList "moduleListImport", gitFolder
 
     End If
+    
 End Sub
 
 Private Sub selectAllImport_Click()
@@ -212,17 +215,13 @@ Private Sub deleteFiles_Click()
         
             Module = moduleListImport.List(i)
             
-            If Right(Module, 4) = ".frm" Then
-            
-                If fso.FileExists(gitFolderLabelImport & Left(Module, Len(Module) - 4) & ".frx") Then
-                
+            If Right(Module, 4) = ".frm" And fso.FileExists(gitFolderLabelImport & Left(Module, Len(Module) - 4) & ".frx") Then
+              
                     If MsgBox("You are trying to delete " & Module & ". Do you wish to delete its .frx reference?", vbYesNo) = vbYes Then
                     
                        fso.deleteFile (gitFolderLabelImport & Left(Module, Len(Module) - 4) & ".frx")
                     
                     End If
-                
-                End If
             
             End If
             

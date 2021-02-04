@@ -43,7 +43,7 @@ Function OpenFolderDialog()
   
     With Application.FileDialog(msoFileDialogFolderPicker)
         .AllowMultiSelect = False
-        .show
+        .Show
                 
         OpenFolderDialog = .SelectedItems(1) & "\"
  
